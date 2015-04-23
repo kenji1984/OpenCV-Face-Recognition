@@ -138,14 +138,9 @@ int main()
 vector<Rect> detectAndDisplay(Mat frame, Mat frame_gray)
 {
 	std::vector<Rect> faces;
-	//Mat frame_gray;
 	Mat crop;
 	Mat res;
 	Mat gray;
-	//string text;
-	//stringstream sstm;
-
-	//cvtColor(frame, frame_gray, COLOR_BGR2GRAY);
 	equalizeHist(frame_gray, frame_gray);
 
 	// Detect faces
@@ -155,18 +150,6 @@ vector<Rect> detectAndDisplay(Mat frame, Mat frame_gray)
 	face_cascade.detectMultiScale(frame_gray, faces, SCALE, MIN_NEIGHBORS, 0 | CASCADE_SCALE_IMAGE, MIN_OBJECT_SIZE);
 
 	size_t ic = 0;
-
-	/*
-	// Set Region of Interest
-	//cv::Rect roi_b;
-	cv::Rect roi_c;
-
-	size_t ic = 0; // ic is index of current element
-	int ac = 0; // ac is area of current element
-
-	size_t ib = 0; // ib is index of biggest element
-	int ab = 0; // ab is area of biggest element
-	*/
 
 	for (ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)
 
@@ -218,27 +201,7 @@ vector<Rect> detectAndDisplay(Mat frame, Mat frame_gray)
 		Point pt2((faces[ic].x + faces[ic].height), (faces[ic].y + faces[ic].width));
 		rectangle(frame, pt1, pt2, Scalar(0, 255, 0), 2, 8, 0);*/
 	}
-	// Show image
-	//imshow("original", frame);
 
-	/*
-	sstm << "Crop area size: " << roi_b.width << "x" << roi_b.height << " Filename: " << filename;
-	text = sstm.str();
-
-	putText(frame, text, cvPoint(30, 30), FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(0, 0, 255), 1, CV_AA);
-	imshow("original", frame);
-
-	if (!crop.empty())
-	{
-	imshow("detected", crop);
-	}
-	else
-	destroyWindow("detected");
-	*/
-	/*if (!crop.empty()){
-		imshow("detected", crop);
-		}
-		else destroyWindow("detected");*/
 	return faces;
 }
 
@@ -272,9 +235,6 @@ void predict(Mat frame, vector<Rect> faces, Mat original_gray, Size size)
 		putText(frame, text, Point(pos_x, pos_y), FONT_HERSHEY_PLAIN, 3.0, CV_RGB(0, 255, 0), 2.0);
 		cout << prediction;
 	}
-	//cv::resize(face_im, face_im, size, 1.0, 1.0, INTER_CUBIC);
-	//int prediction = model->predict(face_im);
-	//cout << prediction;
 }
 
 static void read_csv(const string& filename, vector<Mat>& images, vector<int>& labels, char separator) {
