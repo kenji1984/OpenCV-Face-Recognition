@@ -2,7 +2,8 @@
     CONSOLE APPLICATION : FaceDetection Project Overview
 ========================================================================
 
-AppWizard has created this FaceDetection application for you.
+This app uses CascadeClassifier to identify face, and Local Binary Patterns Histogram 
+algorithm to predict the face, captured from VideoCapture device, from one sample for each face type.
 
 This file contains a summary of what you will find in each of the files that
 make up your FaceDetection application.
@@ -34,7 +35,7 @@ StdAfx.h, StdAfx.cpp
 /////////////////////////////////////////////////////////////////////////////
 Other notes:
 
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
+Configuration file may be needed to compile and run.
+Follow http://opencv-srf.blogspot.com/2013/05/installing-configuring-opencv-with-vs.html for configuration.
 
 /////////////////////////////////////////////////////////////////////////////
