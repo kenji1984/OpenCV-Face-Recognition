@@ -165,6 +165,7 @@ vector<Rect> detectAndDisplay(Mat frame, Mat frame_gray)
 		const int SHIFT_BITS = 0;
 		rectangle(frame, faces[ic], Scalar(0, 255, 0), RECT_THICKNESS, LINE_TYPE, SHIFT_BITS);
 	}
+
 	return faces;
 }
 
@@ -198,9 +199,6 @@ void predict(Mat frame, vector<Rect> faces, Mat original_gray, Size size)
 		putText(frame, text, Point(pos_x, pos_y), FONT_HERSHEY_PLAIN, 3.0, CV_RGB(0, 255, 0), 2.0);
 		cout << prediction;
 	}
-	//cv::resize(face_im, face_im, size, 1.0, 1.0, INTER_CUBIC);
-	//int prediction = model->predict(face_im);
-	//cout << prediction;
 }
 
 static void read_csv(const string& filename, vector<Mat>& images, vector<int>& labels, char separator) {
