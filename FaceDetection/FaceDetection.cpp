@@ -44,7 +44,7 @@ int main()
 	//initialize vector of images and labels to hold images and labels from csv file
 	vector<Mat> images;
 	vector<int> labels;
-	string face_filename = "C:\\Users\\Kenji\\Documents\\Visual Studio 2013\\Projects\\FaceDetection\\FaceDetection\\faces.csv";
+	string face_filename = "D:\\My Document\\Github\\OpenCV-Face-Recognition\\FaceDetection\\faces.csv";
 
 	//read csv file
 	try {
@@ -55,6 +55,12 @@ int main()
 		exit(1);
 	}
 
+	for (Mat image : images){
+		if (image.empty()) {
+			cerr << "image empty" << endl;
+			exit(1);
+		}
+	}
 	//get the height and width of the images to be trained
 	int height = images[0].rows;
 	int width = images[0].cols;
@@ -158,48 +164,6 @@ vector<Rect> detectAndDisplay(Mat frame, Mat frame_gray)
 		const int LINE_TYPE = 8;
 		const int SHIFT_BITS = 0;
 		rectangle(frame, faces[ic], Scalar(0, 255, 0), RECT_THICKNESS, LINE_TYPE, SHIFT_BITS);
-
-		crop = frame(faces[ic]);
-		/*
-		roi_c.x = faces[ic].x;
-		roi_c.y = faces[ic].y;
-		roi_c.width = (faces[ic].width);
-		roi_c.height = (faces[ic].height);
-
-		ac = roi_c.width * roi_c.height; // Get the area of current element (detected face)
-
-		roi_b.x = faces[ib].x;
-		roi_b.y = faces[ib].y;
-		roi_b.width = (faces[ib].width);
-		roi_b.height = (faces[ib].height);
-
-		ab = roi_b.width * roi_b.height; // Get the area of biggest element, at beginning it is same as "current" element
-
-		if (ac > ab)
-		{
-		ib = ic;
-		roi_b.x = faces[ib].x;
-		roi_b.y = faces[ib].y;
-		roi_b.width = (faces[ib].width);
-		roi_b.height = (faces[ib].height);
-		}
-
-		crop = frame(roi_b);
-		resize(crop, res, Size(128, 128), 0, 0, INTER_LINEAR); // This will be needed later while saving images
-		cvtColor(crop, gray, CV_BGR2GRAY); // Convert cropped image to Grayscale
-
-		// Form a filename
-		filename = "";
-		stringstream ssfn;
-		ssfn << filenumber << ".png";
-		filename = ssfn.str();
-		filenumber++;
-
-		imwrite(filename, gray);
-
-		Point pt1(faces[ic].x, faces[ic].y); // Display detected faces on main window - live stream from camera
-		Point pt2((faces[ic].x + faces[ic].height), (faces[ic].y + faces[ic].width));
-		rectangle(frame, pt1, pt2, Scalar(0, 255, 0), 2, 8, 0);*/
 	}
 
 	return faces;
